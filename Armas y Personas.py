@@ -7,15 +7,15 @@ class Persona:
     def disparar_a(self, objetivo):
         if self.arma.municion > 0:
             self.arma.disparar()
-            objetivo.recibir_bala(self.arma.danio)
+            objetivo.recibir_bala(self.arma.danio, self)
         else:
             print(f"{self.nombre} no puede disparar, no tiene munición.")
 
-    def recibir_bala(self, danio):
+    def recibir_bala(self, danio, atacante):
         self.salud -= danio
         
         if self.salud > 0:
-            print(f"{self.nombre} ha recibido {danio} de daño. Salud restante: {self.salud}")
+            print(f"{self.nombre} ha recibido {danio} de daño por parte de {atacante.nombre}. Salud restante: {self.salud}")
 
 class Arma:
     def __init__(self, nombre, municion, danio):
